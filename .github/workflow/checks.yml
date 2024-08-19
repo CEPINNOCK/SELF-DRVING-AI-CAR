@@ -1,0 +1,27 @@
+name: Check for .env File
+
+on:
+  push:
+    branches:
+      - main
+      - '**'  
+  pull_request:
+    branches:
+      - main
+      - '**'  
+
+jobs:
+  check-env-file:
+    runs-on: ubuntu-latest
+    steps:
+    - name: Checkout code
+      uses: actions/checkout@v3
+
+    - name: Check for .env file
+      run: |
+        if git ls-files --error-unmatch ".env" > /dev/null 2>&1; then
+          echo ".env file is committed. Please remove it from the repository."
+          exit 1
+        else
+          echo "No .env file found in the repository. All good!"
+        fi
