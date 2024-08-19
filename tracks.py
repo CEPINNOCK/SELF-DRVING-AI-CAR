@@ -1,1 +1,0 @@
-#The idea I will code and make sure the enterprise is up and runing and also use it for my invetments
